@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Leaflet Examples</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <!-- Leaflet Clusters -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <strong>Leaflet Examples</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Examples</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                <li><a class="dropdown-item" href="map-simple.html">Simple Example</a></li>
+                <li><a class="dropdown-item" href="map-satellite.html">Satellite Layer</a></li>
+                <li><a class="dropdown-item" href="map-popup.html">Marker Popup</a></li>
+                <li><a class="dropdown-item" href="map-draggable.html">Draggable Marker</a></li>
+                <li><a class="dropdown-item" href="map-image.html">Overlay Image</a></li>
+                <li><a class="dropdown-item" href="map-geojson.html">GeoJSON Area</a></li>
+                <li><a class="dropdown-item" href="map-cluster.html">Clusters</a></li>
+                <li><a class="dropdown-item" href="map-fullscreen.html">Fullscreen</a></li>
+                <li><a class="dropdown-item" href="map-heatmap.html">Heatmap</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<main>
+
+  <section class="py-5 container">
+    <h1 class="fw-light">Add Clusters</h1>
+    <div class="row py-lg-5">
+        <style>
+            #map { height: 480px; }
+        </style>
+        <div id="map"></div>
+    </div>
+
+
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8">
+        <h3>Try It</h3>
+        <p>Zoom in and out and notice how the markers are clumped together when they are close together.</p>
+        <p>Notice that when zooming beyond zoom 20 the satellite imagery is no longer available and the street map layer is shown instead.</p>
+        <h3>Code</h3>
+        <pre>
+            &lt;link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" /&gt;
+            ...
+            &lt;script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"&gt;&lt;/script&gt;
+            ...
+            var markers = L.markerClusterGroup();
+            var overlayMaps = {
+              "Marker Clusters": markers
+            };
+            var addressPointsClosed = [
+                                    [54.187565260371,-6.328861027126,'Tree 1'],
+                                    [54.18755139893,-6.3289450704392,'Tree 2'],
+                                    ]
+            for (var i = 0; i &lt; addressPointsClosed.length; i++) {
+              var a = addressPointsClosed[i];
+              var title = a[2];
+              var marker = L.marker(new L.LatLng(a[0], a[1]), {
+                  title: title
+              });
+              marker.bindPopup(title);
+              markers.addLayer(marker);
+            }
+            map.addLayer(markers);
+        </pre>
+
+        <h3>Explanation</h3>
+        <ul>
+          <li>We import the CSS and Javascript needed for clustering</li>
+          <li>We create a markerClusterGroup and add it as an overlay layer</li>
+          <li>We create an array named addressPointsClosed containing coordinates for each point</li>
+          <li>We add javascript to loop through that array and add each as a marker to the markers layer</li>
+        </ul>
+        <p>
+          <a href="map-fullscreen.html" class="btn btn-primary my-2">Next Example</a>
+          <a href="map-geojson.html" class="btn btn-default">Previous</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1"></p>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet Clusters -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script>
+
+        var mapbox_url = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        var mapbox_attribution = '© Mapbox © OpenStreetMap Contributors';
+        var esri_url ='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+        var esri_attribution = '© Esri © OpenStreetMap Contributors';
+
+        var lyr_satellite = L.tileLayer(esri_url, {id: 'MapID', maxZoom: 20, tileSize: 512, zoomOffset: -1, attribution: esri_attribution});
+        var lyr_streets   = L.tileLayer(mapbox_url, {id: 'mapbox/streets-v11', maxZoom: 28, tileSize: 512, zoomOffset: -1, attribution: mapbox_attribution});
+
+        var markers = L.markerClusterGroup();
+        var map = L.map('map', {
+            center: [54.187565260371, -6.328861027126],
+            zoom: 18,
+            layers: [lyr_satellite, lyr_streets]
+        });
+
+        var baseMaps = {
+            "Streets": lyr_streets,
+            "Satellite": lyr_satellite
+        };
+        var overlayMaps = {
+            "Marker Clusters": markers
+        };
+
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+        var addressPointsClosed = [
+                                    [54.187565260371,-6.328861027126,'Tree 1'],
+                                    [54.18755139893,-6.3289450704392,'Tree 2'],
+                                    [54.187571758432,-6.3288771410372,'Tree 3'],
+                                    [54.187570230056,-6.3286272286709,'Tree 4'],
+                                    [54.187173007196584,-6.328495144844056,'Tree 5'],
+                                    [54.18892857024,-6.3289423882301,'Tree 6'],
+                                    [54.18729012166,-6.3287595770943,'Tree 7'],
+                                    [54.18784787195367,-6.328006982803346,'Tree 8'],
+                                    [54.18774742766436,-6.328082084655763,'Tree 9'],
+                                    [54.187541344061,-6.3288735804562,'Tree 10'],
+                                    [54.18769406653642,-6.328237652778626,'Tree 11'],
+                                  ]
+
+        for (var i = 0; i < addressPointsClosed.length; i++) {
+            var a = addressPointsClosed[i];
+            var title = a[2];
+            var marker = L.marker(new L.LatLng(a[0], a[1]), {
+                title: title
+            });
+            marker.bindPopup(title);
+            markers.addLayer(marker);
+        }
+        map.addLayer(markers);
+
+    </script>
+  </body>
+</html>
+

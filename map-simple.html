@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Leaflet Examples</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <strong>Leaflet Examples</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Examples</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                <li><a class="dropdown-item" href="map-simple.html">Simple Example</a></li>
+                <li><a class="dropdown-item" href="map-satellite.html">Satellite Layer</a></li>
+                <li><a class="dropdown-item" href="map-popup.html">Marker Popup</a></li>
+                <li><a class="dropdown-item" href="map-draggable.html">Draggable Marker</a></li>
+                <li><a class="dropdown-item" href="map-image.html">Overlay Image</a></li>
+                <li><a class="dropdown-item" href="map-geojson.html">GeoJSON Area</a></li>
+                <li><a class="dropdown-item" href="map-cluster.html">Clusters</a></li>
+                <li><a class="dropdown-item" href="map-fullscreen.html">Fullscreen</a></li>
+                <li><a class="dropdown-item" href="map-heatmap.html">Heatmap</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+
+<main>
+
+  <section class="py-5 container">
+    <h1 class="fw-light">Simple Example</h1>
+    <div class="row py-lg-5">
+        <style>
+            #map { height: 380px; }
+        </style>
+        <div id="map"></div>
+    </div>
+
+
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8">
+        <p class="lead text-muted">View the source of this page to see how the map is created. Notice:</p>
+        <ul>
+            <li>Leaflet CSS in the head HTML</li>
+            <li>Leaflet JS just before the end body tag</li>
+            <li>div with id set to 'map'</li>
+            <li>script block to create a map in the element with id='map', centred to Newry Town Hall with a zoom of 19</li>
+            <li>Adds a mapbox tile layer with an attribution</li>
+            <li>Defines a marker at a specific latitude and longitude</li>
+            <li>Adds the marker to the map as a layer group</li>
+        </ul>
+        <p>
+          <a href="map-popup.html" class="btn btn-primary my-2">Next Example</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1"></p>
+  </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1/dist/js/bootstrap.min.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map', {
+            center: [54.17747885048963, -6.337641477584839],
+            zoom: 19
+        });
+        // Use the Light grey tiles from mapbox
+        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+                        {
+                        attribution: "© Mapbox © OpenStreetMap Contributors"
+                        }).addTo(map);
+        var marker = L.marker([54.17747885048963, -6.337641477584839]).addTo(map);
+        var lg_markers = L.layerGroup([marker]);
+    </script>
+  </body>
+</html>
+
